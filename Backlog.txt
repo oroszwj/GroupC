@@ -1,6 +1,14 @@
 Backlog
 
 * Hello World
-* prompts for number of Items
-* prompt for Cost per Items
+* prompts for number of items as string
+* Show results (fake)
+* prompt for Cost per Items as string
 * prompts for state code
+* convert strings to numerics and echo
+* validate inputs and echo coerced values
+* lookup state code to ta
+* calculation based on default values
+* calculate based on cost and quantity
+* add state tax
+* add discount

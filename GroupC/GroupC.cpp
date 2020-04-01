@@ -32,6 +32,7 @@ int main()
     g_price = parseQuantity(costStr);
     cout << "Ok, $" << g_price << " per item." << endl;
     string stateStr = promptForState();
+    parseStateString(stateStr);
     outputResults();
 }
 
@@ -81,36 +82,36 @@ double parseCost(string value)
 
 void parseStateString(string state)
 {
-    if(strcmp(state.c_str(), "UT") == 0)
+    if(state.compare("UT") == 0)
     {
         g_discount = 0.03;
         g_taxRate = 0.0685;
         return;
     }
-    if(strcmp(state.c_str(), "NV") == 0)
+    if(state.compare("NV") == 0)
     {
         g_discount = 0.05;
         g_taxRate = 0.08;
         return;
     }
-    if(strcmp(state.c_str(),"TX") == 0)
+    if(state.compare("TX") == 0)
     {
         g_discount = 0.07;
         g_taxRate = 0.0625;
         return;
     }
-    if(strcmp(state.c_str(),"AL") == 0)
+    if(state.compare("AL") == 0)
     {
         g_discount = 0.1;
         g_taxRate = 0.04;
         return;
     }
-    if(strcmp(state.c_str(),"CA") == 0)
+    if(state.compare("CA") == 0)
     {
         g_discount = 0.15;
         g_taxRate = 0.0825;
         return;
     }
-    g_discount = 1;
-    g_taxRate = 1;
+    g_discount = 0;
+    g_taxRate = 0;
 };
