@@ -8,19 +8,109 @@
 
 using namespace std;
 
+string promptForQuantity();
+string promptForCost();
+string promptForState();
+void outputResults();
+
+double parseQuantity(string value);
+double parseCost(string value);
+void parseStateString(string state);
+
+double g_calculationResult = 0;
+double g_quantity = 0;
+double g_price = 0;
+double g_taxRate = 0;
+double g_discount = 0;
+
 int main()
 {
-    vector<uint8_t> testVect { 1, 2, 3 };
-    std::cout << "Hello World!\n" << to_string(testVect[0]) << endl;    
+    string quantStr = promptForQuantity();
+    g_quantity = parseQuantity(quantStr);
+    cout << "Ok, " << g_quantity << " items." << endl;
+    string costStr = promptForCost();
+    g_price = parseQuantity(costStr);
+    cout << "Ok, $" << g_price << " per item." << endl;
+    string stateStr = promptForState();
+    outputResults();
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+void outputResults()
+{
+    g_calculationResult = g_quantity * g_price;
+    cout << "The subtotal price is: $" << g_calculationResult << endl;
+    double afterDiscount = g_calculationResult * (1.0 - g_discount);
+    cout << "The price after discount is: $" << afterDiscount << endl;
+    double afterTax = afterDiscount * (1.0 + g_taxRate);
+    cout << "The price after tax is: $" << afterTax << endl;
+}
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+string promptForQuantity()
+{
+    string quantityString;
+    cout << "Enter Number of items: " << endl;
+    getline(cin, quantityString);
+    return quantityString;
+}
+
+string promptForCost()
+{
+    string costStr;
+    cout << "Enter Cost per Item: " << endl;
+    getline(cin, costStr);
+    return costStr;
+}
+
+string promptForState()
+{
+    string stateStr;
+    cout << "Enter State of purchase: " << endl;
+    getline(cin, stateStr);
+    return stateStr;
+}
+
+double parseQuantity(string value)
+{
+    return atoi(value.c_str());
+}
+
+double parseCost(string value)
+{
+    return atof(value.c_str());
+}
+
+void parseStateString(string state)
+{
+    if(strcmp(state.c_str(), "UT") == 0)
+    {
+        g_discount = 0.03;
+        g_taxRate = 0.0685;
+        return;
+    }
+    if(strcmp(state.c_str(), "NV") == 0)
+    {
+        g_discount = 0.05;
+        g_taxRate = 0.08;
+        return;
+    }
+    if(strcmp(state.c_str(),"TX") == 0)
+    {
+        g_discount = 0.07;
+        g_taxRate = 0.0625;
+        return;
+    }
+    if(strcmp(state.c_str(),"AL") == 0)
+    {
+        g_discount = 0.1;
+        g_taxRate = 0.04;
+        return;
+    }
+    if(strcmp(state.c_str(),"CA") == 0)
+    {
+        g_discount = 0.15;
+        g_taxRate = 0.0825;
+        return;
+    }
+    g_discount = 1;
+    g_taxRate = 1;
+};

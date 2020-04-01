@@ -1,0 +1,6 @@
+Backlog
+
+* Hello World
+* prompts for number of Items
+* prompt for Cost per Items
+* prompts for state code
